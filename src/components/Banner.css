@@ -1,0 +1,254 @@
+.banner {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.banner__slider {
+  position: relative;
+  height: 380px;
+}
+
+.banner__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  display: flex;
+  align-items: center;
+}
+
+.banner__slide--active {
+  opacity: 1;
+}
+
+.banner__content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+.banner__text-group {
+  max-width: 550px;
+  z-index: 2;
+}
+
+.banner__tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.banner__title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  letter-spacing: -1px;
+}
+
+.banner__subtitle {
+  font-size: 1.2rem;
+  color: #a0aec0;
+  margin: 0 0 28px;
+  font-weight: 400;
+}
+
+.banner__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.banner__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.banner__cta-arrow {
+  transition: transform 0.3s ease;
+}
+
+.banner__cta:hover .banner__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Visual Elements */
+.banner__visual {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.banner__circle {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.banner__circle--sm {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: -30px;
+  right: -40px;
+  animation: float 4s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Navigation Arrows */
+.banner__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  width: 44px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.banner__arrow--left {
+  left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.banner__arrow--right {
+  right: 0;
+  border-radius: 8px 0 0 8px;
+}
+
+.banner__arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Dots */
+.banner__dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.banner__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.banner__dot--active {
+  background: #ff9f43;
+  width: 30px;
+  border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .banner__slider {
+    height: 300px;
+  }
+
+  .banner__title {
+    font-size: 2.2rem;
+  }
+
+  .banner__subtitle {
+    font-size: 1rem;
+  }
+
+  .banner__visual {
+    display: none;
+  }
+
+  .banner__content {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner__slider {
+    height: 260px;
+  }
+
+  .banner__title {
+    font-size: 1.8rem;
+  }
+
+  .banner__content {
+    padding: 0 50px;
+  }
+
+  .banner__cta {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .banner__arrow {
+    width: 36px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner__slider {
+    height: 220px;
+  }
+
+  .banner__title {
+    font-size: 1.4rem;
+  }
+
+  .banner__subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  .banner__tag {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+  }
+}
