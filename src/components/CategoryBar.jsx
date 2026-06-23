@@ -1,7 +1,7 @@
 import { categories } from "../data/products";
 import "./CategoryBar.css";
 
-function CategoryBar() {
+function CategoryBar({ onCategorySelect }) {
   return (
     <section className="category-bar" id="category-bar">
       <div className="category-bar__inner">
@@ -10,6 +10,8 @@ function CategoryBar() {
             key={cat.id}
             className="category-bar__item"
             id={`category-${cat.id}`}
+            onClick={() => onCategorySelect(cat.name)}
+            style={{cursor: 'pointer'}}
           >
             <div
               className="category-bar__icon"

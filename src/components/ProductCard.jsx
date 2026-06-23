@@ -1,7 +1,8 @@
 import { FiStar, FiHeart, FiShoppingCart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 import "./ProductCard.css";
 
-function ProductCard({ product, onAddToCart, onProductClick }) {
+function ProductCard({ product, isWished, onAddToCart, onToggleWishlist, onProductClick }) {
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -34,12 +35,15 @@ function ProductCard({ product, onAddToCart, onProductClick }) {
 
       {/* Wishlist */}
       <button
-        className="product-card__wishlist"
+        className={`product-card__wishlist ${isWished ? "product-card__wishlist--active" : ""}`}
         id={`wishlist-${product.id}`}
         aria-label="Add to wishlist"
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggleWishlist(product);
+        }}
       >
-        <FiHeart size={16} />
+        {isWished ? <FaHeart size={16} color="#ff4757" /> : <FiHeart size={16} />}
       </button>
 
       {/* Image */}

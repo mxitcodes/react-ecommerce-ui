@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FiMail,
   FiFacebook,
@@ -8,6 +9,18 @@ import {
 import "./Footer.css";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      setSubscribed(true);
+      setEmail("");
+      setTimeout(() => setSubscribed(false), 3000);
+    }
+  };
+
   const footerLinks = {
     "Get to Know Us": ["About Us", "Careers", "Press Releases", "ShopKart Cares"],
     "Connect with Us": ["Facebook", "Twitter", "Instagram"],
@@ -36,6 +49,28 @@ function Footer() {
       >
         Back to top ↑
       </button>
+
+      {/* Newsletter */}
+      <div className="footer__newsletter">
+        <div className="footer__newsletter-inner">
+          <div className="footer__newsletter-text">
+            <h3>Subscribe to our Newsletter</h3>
+            <p>Get the latest updates, deals, and exclusive offers straight to your inbox.</p>
+          </div>
+          <form className="footer__newsletter-form" onSubmit={handleSubscribe}>
+            <input 
+              type="email" 
+              placeholder="Enter your email address" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button type="submit" className={subscribed ? "subscribed" : ""}>
+              {subscribed ? "Subscribed! 🎉" : "Subscribe"}
+            </button>
+          </form>
+        </div>
+      </div>
 
       {/* Links Grid */}
       <div className="footer__main">

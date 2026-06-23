@@ -1,7 +1,17 @@
+import { useState, useEffect } from "react";
 import { FiX, FiStar, FiShoppingCart } from "react-icons/fi";
+import ProductReviews from "./ProductReviews";
 import "./ProductModal.css";
 
-function ProductModal({ product, onClose, onAddToCart }) {
+function ProductModal({ product, onClose, onAddToCart, onBuyNow }) {
+  const [activeImage, setActiveImage] = useState("");
+
+  useEffect(() => {
+    if (product) {
+      setActiveImage(product.image);
+    }
+  }, [product]);
+
   if (!product) return null;
 
   const formatPrice = (price) => {
@@ -37,7 +47,7 @@ function ProductModal({ product, onClose, onAddToCart }) {
         <div className="modal-grid">
           <div className="modal-image-col">
             <div className="modal-image-wrap">
-              <img src={product.image} alt={product.name} />
+              <img src={activeImage} alt={product.name} />
             </div>
           </div>
           <div className="modal-info-col">
@@ -58,17 +68,30 @@ function ProductModal({ product, onClose, onAddToCart }) {
 
             <p className="modal-description">{product.description}</p>
 
-            <button
-              className="modal-add-btn"
-              onClick={() => {
-                onAddToCart(product);
-                onClose();
-              }}
-            >
-              <FiShoppingCart size={18} />
-              Add to Cart
-            </button>
+            <div className="modal-actions">
+              <button
+                className="modal-add-btn"
+                onClick={() => {
+                  onAddToCart(product);
+                  onClose();
+                }}
+              >
+                <FiShoppingCart size={18} />
+                Add to Cart
+              </button>
+              <button
+                className="modal-buy-btn"
+                onClick={() => {
+                  onBuyNow(product);
+                  onClose();
+                }}
+              >
+                Buy Now
+              </button>
+            </div>
           </div>
+          
+          <ProductReviews productId={product.id} />
         </div>
       </div>
     </>

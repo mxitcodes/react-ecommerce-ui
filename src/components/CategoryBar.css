@@ -1,5 +1,5 @@
 .category-bar {
-  background: #ffffff;
+  background: var(--color-card, #ffffff);
   padding: 20px 16px;
   border-bottom: 1px solid #eee;
   overflow-x: auto;
@@ -55,7 +55,7 @@
 .category-bar__name {
   font-size: 0.78rem;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text);
   text-align: center;
   white-space: nowrap;
 }

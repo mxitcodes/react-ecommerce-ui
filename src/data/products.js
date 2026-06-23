@@ -2,15 +2,20 @@
 const products = [
   {
     id: 1,
-    name: "Sony WH-1000XM5 Wireless Headphones",
-    price: 29999,
-    originalPrice: 34990,
-    discount: 14,
-    rating: 4.5,
-    reviews: 12847,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
+    name: "Wireless Noise-Cancelling Headphones",
+    price: 14999,
+    originalPrice: 24999,
+    discount: 40,
+    rating: 4.8,
+    reviews: 1245,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+    images: [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=300&h=300&fit=crop"
+    ],
     category: "Electronics",
-    badge: "Best Seller",
+    badge: "Bestseller",
     description: "Industry-leading noise cancellation optimized to you. Magnificent sound, engineered to perfection. Crystal clear hands-free calling and up to 30 hours of battery life with quick charging."
   },
   {
@@ -22,6 +27,7 @@ const products = [
     rating: 4.7,
     reviews: 34521,
     image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=300&h=300&fit=crop",
+    
     category: "Mobiles",
     badge: "Top Rated",
     description: "Forged in titanium and featuring the groundbreaking A17 Pro chip, a customizable Action button, and the most powerful iPhone camera system ever. Experience the ultimate Pro performance."
@@ -35,6 +41,7 @@ const products = [
     rating: 4.3,
     reviews: 8765,
     image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop",
+    
     category: "Fashion",
     badge: "Deal of the Day",
     description: "Boasting the first-ever Max Air unit created specifically for Nike Sportswear, the Nike Air Max 270 delivers visible air under every step. Updated for modern comfort."
@@ -48,6 +55,7 @@ const products = [
     rating: 4.4,
     reviews: 19234,
     image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=300&fit=crop",
+    
     category: "Electronics",
     badge: "Limited Deal",
     description: "Step up to the world of Crystal UHD. Experience vibrant colors and sharp details with the Crystal Processor 4K. Includes built-in voice assistants and a sleek, boundless design."
@@ -61,6 +69,7 @@ const products = [
     rating: 4.1,
     reviews: 5623,
     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop",
+    
     category: "Watches",
     badge: "Lightning Deal",
     description: "Powered with Wear OS by Google. Faster performance, lower power consumption, and a brighter display. Track your health, receive notifications, and stay connected on the go."
@@ -74,6 +83,7 @@ const products = [
     rating: 4.6,
     reviews: 3456,
     image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&h=300&fit=crop",
+    
     category: "Electronics",
     badge: "New Launch",
     description: "Make your content stand out with this compact mirrorless camera. Features a 24.2MP APS-C sensor, 4K video recording, and advanced Dual Pixel CMOS AF II for perfect focus."
@@ -87,6 +97,7 @@ const products = [
     rating: 4.8,
     reviews: 27891,
     image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&h=300&fit=crop",
+    
     category: "Laptops",
     badge: "Best Seller",
     description: "Supercharged by M2. An impossibly thin design meets next-generation performance. Features a beautiful Liquid Retina display, 1080p FaceTime HD camera, and all-day battery life."
@@ -100,6 +111,7 @@ const products = [
     rating: 4.4,
     reviews: 14567,
     image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=300&fit=crop",
+    
     category: "Electronics",
     badge: "Popular",
     description: "Take the amazing power of JBL Pro Sound with you. The Charge 5 features an optimized long excursion driver, a separate tweeter, and dual pumping JBL bass radiators. IP67 waterproof."
@@ -113,23 +125,25 @@ const products = [
     rating: 4.2,
     reviews: 9876,
     image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=300&fit=crop",
+    
     category: "Fashion",
     badge: "Trending",
     description: "Currently one of the most iconic sunglass models in the world. Ray-Ban Aviator Classic sunglasses were originally designed for U.S. aviators in 1937."
   },
   {
-  id: 12,
-  name: "PlayStation 5 Console",
-  price: 54999,
-  originalPrice: 59999,
-  discount: 8,
-  rating: 4.9,
-  reviews: 22451,
-  image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500",
-  category: "Gaming",
-  badge: "Hot Deal",
-  description:
-    "Next-generation PlayStation 5 console with ultra-fast SSD, ray tracing, and immersive gaming experience."
+    id: 10,
+    name: "PlayStation 5 Console",
+    price: 54999,
+    originalPrice: 59999,
+    discount: 8,
+    rating: 4.9,
+    reviews: 22451,
+    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500",
+    
+    category: "Gaming",
+    badge: "Hot Deal",
+    description:
+      "Next-generation PlayStation 5 console with ultra-fast SSD, ray tracing, and immersive gaming experience."
   },
   {
     id: 11,
@@ -140,6 +154,7 @@ const products = [
     rating: 4.5,
     reviews: 6543,
     image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=300&h=300&fit=crop",
+    
     category: "Fashion",
     badge: "Trending",
     description: "Experience epic energy with the new Ultraboost Light, our lightest ever. The magic lies in the Light BOOST midsole, providing superior cushioning and responsiveness."
@@ -153,6 +168,7 @@ const products = [
     rating: 4.6,
     reviews: 21098,
     image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=300&fit=crop",
+    
     category: "Electronics",
     badge: "Amazon Choice",
     description: "Now with a 6.8\" display and thinner borders, adjustable warm light, up to 10 weeks of battery life, and 20% faster page turns. Purpose-built for reading with a flush-front design."

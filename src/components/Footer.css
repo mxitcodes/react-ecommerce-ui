@@ -1,3 +1,79 @@
+.footer {
+  background: #1a1a2e;
+  color: #fff;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  margin-top: 60px;
+}
+
+.footer__newsletter {
+  background: linear-gradient(135deg, #6C63FF, #5a52e0);
+  padding: 40px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__newsletter-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer__newsletter-text h3 {
+  font-size: 1.6rem;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.footer__newsletter-text p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.footer__newsletter-form {
+  display: flex;
+  flex: 1;
+  max-width: 500px;
+  gap: 8px;
+}
+
+.footer__newsletter-form input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+}
+
+.footer__newsletter-form button {
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: none;
+  background: #f7971e;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.footer__newsletter-form button:hover {
+  background: #ff9f43;
+  transform: translateY(-2px);
+}
+
+.footer__newsletter-form button.subscribed {
+  background: #27ae60;
+  color: #fff;
+}
+
 /* ===== Back to Top ===== */
 .footer__back-top {
   display: block;
@@ -103,7 +179,7 @@
 
 .footer__tagline {
   font-size: 0.8rem;
-  color: #666;
+  color: var(--color-text-light);
   margin: 0;
 }
 
@@ -136,7 +212,7 @@
 /* Copyright */
 .footer__copyright {
   font-size: 0.75rem;
-  color: #555;
+  color: var(--color-text-light);
   text-align: center;
   margin: 0;
 }

@@ -29,6 +29,16 @@
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
+body.dark-theme {
+  --color-primary: #121212;
+  --color-text: #e2e8f0;
+  --color-text-light: #a0aec0;
+  --color-bg: #0f172a;
+  --color-card: #1e293b;
+  --color-border: #334155;
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -41,6 +51,7 @@ body {
   color: var(--color-text);
   line-height: 1.5;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 a {

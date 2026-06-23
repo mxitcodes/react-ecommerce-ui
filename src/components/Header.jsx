@@ -8,10 +8,12 @@ import {
   FiMapPin,
   FiChevronDown,
   FiHeart,
+  FiSun,
+  FiMoon,
 } from "react-icons/fi";
 import "./Header.css";
 
-function Header({ cartCount, onSearch, onCartClick }) {
+function Header({ cartCount, wishlistCount = 0, onSearch, onCategorySelect, onCartClick, onWishlistClick, isDarkMode, onToggleTheme, user, onLoginClick, onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
@@ -22,16 +24,15 @@ function Header({ cartCount, onSearch, onCartClick }) {
   };
 
   const navLinks = [
-    "Fresh",
-    "MiniTV",
-    "Sell",
-    "Best Sellers",
-    "Today's Deals",
+    "All",
     "Mobiles",
     "Electronics",
     "Fashion",
-    "Prime",
-    "Home & Kitchen",
+    "Home",
+    "Appliances",
+    "Books",
+    "Toys",
+    "Sports",
   ];
 
   return (
@@ -40,11 +41,11 @@ function Header({ cartCount, onSearch, onCartClick }) {
       <div className="header__top">
         <div className="header__top-inner">
           {/* Logo */}
-          <div className="header__logo" id="logo">
+          <div className="header__logo" id="logo" onClick={() => onCategorySelect("all")} style={{cursor: "pointer"}}>
             <button
               className="header__menu-btn"
               id="menu-toggle"
-              onClick={() => setMenuOpen(!menuOpen)}
+              onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen); }}
               aria-label="Toggle menu"
             >
               {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
@@ -70,7 +71,11 @@ function Header({ cartCount, onSearch, onCartClick }) {
             id="search-bar"
             onSubmit={handleSearch}
           >
-            <select className="header__search-category" id="search-category">
+            <select 
+              className="header__search-category" 
+              id="search-category"
+              onChange={(e) => onCategorySelect(e.target.value)}
+            >
               <option value="all">All</option>
               <option value="electronics">Electronics</option>
               <option value="fashion">Fashion</option>
@@ -99,18 +104,25 @@ function Header({ cartCount, onSearch, onCartClick }) {
 
           {/* Right Actions */}
           <div className="header__actions">
-            <div className="header__action" id="account-dropdown">
+            <div className="header__action" onClick={onToggleTheme} style={{cursor: 'pointer'}}>
+              {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
+            </div>
+
+            <div className="header__action" onClick={user ? onLogout : onLoginClick} style={{cursor: 'pointer'}}>
               <FiUser size={20} />
               <div className="header__action-text">
-                <span className="header__action-label">Hello, Sign in</span>
-                <span className="header__action-value">
-                  Account & Lists <FiChevronDown size={12} />
-                </span>
+                <span className="header__action-label">{user ? "Sign Out" : "Hello, Sign in"}</span>
+                <span className="header__action-value">{user ? user.name : "Account"}</span>
               </div>
             </div>
 
-            <div className="header__action" id="wishlist">
-              <FiHeart size={20} />
+            <div className="header__action header__wishlist" id="wishlist" onClick={onWishlistClick} style={{cursor: 'pointer'}}>
+              <div style={{ position: 'relative' }}>
+                <FiHeart size={20} />
+                {wishlistCount > 0 && (
+                  <span className="header__cart-count header__wishlist-count" style={{ background: '#ff4757', top: '-8px', right: '-8px' }}>{wishlistCount}</span>
+                )}
+              </div>
               <div className="header__action-text">
                 <span className="header__action-label">Your</span>
                 <span className="header__action-value">Wishlist</span>
@@ -118,10 +130,12 @@ function Header({ cartCount, onSearch, onCartClick }) {
             </div>
 
             <div className="header__action header__cart" id="cart-button" onClick={onCartClick}>
-              <FiShoppingCart size={22} />
-              {cartCount > 0 && (
-                <span className="header__cart-count">{cartCount}</span>
-              )}
+              <div style={{ position: 'relative' }}>
+                <FiShoppingCart size={22} />
+                {cartCount > 0 && (
+                  <span className="header__cart-count">{cartCount}</span>
+                )}
+              </div>
               <span className="header__action-value">Cart</span>
             </div>
           </div>
@@ -152,7 +166,16 @@ function Header({ cartCount, onSearch, onCartClick }) {
         <ul className="header__nav-list">
           {navLinks.map((link, index) => (
             <li key={index} className="header__nav-item">
-              <a href="#" className="header__nav-link" id={`nav-link-${index}`}>
+              <a 
+                href="#" 
+                className="header__nav-link" 
+                id={`nav-link-${index}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onCategorySelect(link);
+                  setMenuOpen(false);
+                }}
+              >
                 {link}
               </a>
             </li>

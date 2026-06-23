@@ -1,7 +1,12 @@
-import { FiX, FiMinus, FiPlus, FiTrash2, FiShoppingBag } from "react-icons/fi";
+import { useState } from "react";
+import { FiX, FiMinus, FiPlus, FiTrash2, FiShoppingBag, FiTruck, FiTag } from "react-icons/fi";
 import "./Cart.css";
 
-function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemove }) {
+function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemove, onCheckout }) {
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [promoMessage, setPromoMessage] = useState(null);
+  const FREE_SHIPPING_THRESHOLD = 5000;
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -10,10 +15,26 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemove }) {
     }).format(price);
   };
 
-  const totalAmount = cartItems.reduce(
+  const subtotal = cartItems.reduce(
     (total, item) => total + item.product.price * item.quantity,
     0
   );
+
+  const totalAmount = Math.max(0, subtotal - discount);
+  const progressPercent = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
+  const amountToFreeShipping = FREE_SHIPPING_THRESHOLD - subtotal;
+
+  const handleApplyPromo = () => {
+    if (promoCode.toUpperCase() === "SAVE20") {
+      setDiscount(subtotal * 0.2); // 20% off
+      setPromoMessage({ text: "20% discount applied!", type: "success" });
+    } else if (promoCode.toUpperCase() === "FREESHIP") {
+      setPromoMessage({ text: "Free shipping code applied!", type: "success" });
+    } else {
+      setDiscount(0);
+      setPromoMessage({ text: "Invalid promo code.", type: "error" });
+    }
+  };
 
   return (
     <>
@@ -30,6 +51,20 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemove }) {
             <FiX size={24} />
           </button>
         </div>
+
+        {cartItems.length > 0 && (
+          <div className="cart-shipping-progress">
+            <div className="shipping-msg">
+              <FiTruck />
+              {amountToFreeShipping > 0 
+                ? <span>Add <strong>{formatPrice(amountToFreeShipping)}</strong> more to get Free Shipping!</span>
+                : <span className="success-text">You've unlocked Free Shipping!</span>}
+            </div>
+            <div className="progress-bar-container">
+              <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }}></div>
+            </div>
+          </div>
+        )}
 
         <div className="cart-body">
           {cartItems.length === 0 ? (
@@ -86,11 +121,39 @@ function Cart({ isOpen, onClose, cartItems, onUpdateQuantity, onRemove }) {
 
         {cartItems.length > 0 && (
           <div className="cart-footer">
-            <div className="cart-total">
-              <span>Total:</span>
-              <strong>{formatPrice(totalAmount)}</strong>
+            <div className="promo-section">
+              <div className="promo-input-group">
+                <FiTag className="promo-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Enter promo code (e.g. SAVE20)" 
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value)}
+                />
+                <button onClick={handleApplyPromo}>Apply</button>
+              </div>
+              {promoMessage && (
+                <p className={`promo-msg promo-msg--${promoMessage.type}`}>{promoMessage.text}</p>
+              )}
             </div>
-            <button className="checkout-btn">Proceed to Checkout</button>
+
+            <div className="cart-summary-calc">
+              <div className="summary-row">
+                <span>Subtotal:</span>
+                <span>{formatPrice(subtotal)}</span>
+              </div>
+              {discount > 0 && (
+                <div className="summary-row discount-row">
+                  <span>Discount:</span>
+                  <span>-{formatPrice(discount)}</span>
+                </div>
+              )}
+              <div className="summary-row total-row">
+                <span>Total:</span>
+                <strong>{formatPrice(totalAmount)}</strong>
+              </div>
+            </div>
+            <button className="checkout-btn" onClick={onCheckout}>Proceed to Checkout</button>
           </div>
         )}
       </div>

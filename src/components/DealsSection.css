@@ -1,12 +1,12 @@
 .deals {
   padding: 40px 16px;
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  background: var(--color-bg, #f8f9fa);
 }
 
 .deals__inner {
   max-width: 1400px;
   margin: 0 auto;
-  background: #ffffff;
+  background: var(--color-card, #ffffff);
   border-radius: 16px;
   padding: 28px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
@@ -15,15 +15,24 @@
 
 .deals__header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.deals__title-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .deals__title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--color-text);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -32,6 +41,40 @@
 
 .deals__title-icon {
   font-size: 1.4rem;
+}
+
+.deals__timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deals__timer-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+}
+
+.deals__timer-boxes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.deals__timer-box {
+  background: #e74c3c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  min-width: 32px;
+  text-align: center;
+}
+
+.deals__timer-sep {
+  color: #e74c3c;
+  font-weight: 700;
 }
 
 .deals__view-all {
@@ -97,7 +140,7 @@
 .deals__card-title {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text);
   margin: 0;
 }
 
